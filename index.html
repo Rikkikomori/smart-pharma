@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Умный фарм-поиск — demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <h1>Умный фарм-поиск</h1>
+      <nav><a href="tags.html">Справочник тегов</a></nav>
+    </div>
+  </div>
+  <div class="container">
+    <aside class="left">
+      <div class="card">
+        <h3>Фильтры</h3>
+        <div id="filters"></div>
+        <div class="f-actions">
+          <button id="applyFilters">Применить</button>
+          <button id="resetFilters" class="muted">Сбросить</button>
+        </div>
+        <hr>
+        <label><input type="checkbox" id="rxOnly"> Только по рецепту</label>
+      </div>
+      <div class="card small">
+        <h4>Подсказка</h4>
+        <p>Вводи <code>#</code> для поиска по тегам. Клик по тегу — быстрый фильтр.</p>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="search-card card">
+        <input id="query" placeholder="Введите название, симптом, тег или форму (напр. #ОРВИ, капсулы)">
+        <div id="suggestions" class="suggestions"></div>
+        <div class="controls">
+          <button id="searchBtn">Поиск</button>
+        </div>
+      </div>
+      <div id="results" class="results grid"></div>
+    </main>
+  </div>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Карточка препарата</title><link rel="stylesheet" href="style.css"></head>
+<body>
+  <div class="topbar"><div class="wrap"><h1 id="drugName">Препарат</h1><nav><a href="index.html">← Назад</a></nav></div></div>
+  <div class="container">
+    <main class="main card" id="drugMain"></main>
+  </div>
+<script src="data.js"></script>
+<script>
+function qparam(name){return new URLSearchParams(window.location.search).get(name)}
+function renderDrug(){
+  const id = Number(qparam('id'));
+  const d = DATA.find(x=>x.id===id);
+  const main = document.getElementById('drugMain');
+  if(!d){ main.innerHTML='<p>Не найдено</p>'; return; }
+  document.getElementById('drugName').innerText = d.name + (d.prescription? ' • Rx':' • OTC');
+  main.innerHTML = `
+    <div class="drug-full">
+      <div class="left-col"><img src="${d.img}" alt="${d.name}" style="width:320px;border-radius:8px"></div>
+      <div class="right-col">
+        <h2>${d.name} ${d.prescription?'<span class="badge rx">Rx</span>':'<span class="badge otc">OTC</span>'}</h2>
+        <p><strong>Действующее вещество:</strong> ${d.substance}</p>
+        <p><strong>Форма:</strong> ${d.form}</p>
+        <p><strong>Показания (симптомы):</strong> ${d.symptoms.join(', ')}</p>
+        <p><strong>Заболевания:</strong> ${d.disease.join(', ')}</p>
+        <div class="tags">${d.tags.map(t=>`<button class="tag" data-tag="${t}">${t}</button>`).join('')}</div>
+        <h3>Аналоги</h3>
+        <p><strong>То же вещество:</strong> ${d.analogs.same_substance.join(', ') || '—'}</p>
+        <p><strong>По группе:</strong> ${d.analogs.group_analogs.join(', ') || '—'}</p>
+      </div>
+    </div>
+    <section class="instruction"><h3>Инструкция (шаблон)</h3><p><strong>Показания:</strong> ...</p><p><strong>Противопоказания:</strong> ...</p><p><strong>Дозировка:</strong> ...</p></section>
+    <section class="prescription-memo"><h3>Памятка по рецептам</h3><ul><li>Проверьте печать и подпись</li><li>Проверьте дату и серию бланка</li><li>При сомнении свяжитесь с руководителем</li></ul></section>
+  `;
+  main.querySelectorAll('.tag').forEach(btn=> btn.onclick = ()=> location.href = 'index.html?tags=' + encodeURIComponent(btn.getAttribute('data-tag')) );
+}
+renderDrug();
+</script>
+</body>
+</html>

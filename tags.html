@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Справочник тегов</title><link rel="stylesheet" href="style.css"></head>
+<body>
+  <div class="topbar"><div class="wrap"><h1>Справочник тегов</h1><nav><a href="index.html">← Назад к поиску</a></nav></div></div>
+  <div class="container tags-page">
+    <main class="main">
+      <div class="card"><h2>Все теги по категориям</h2><div id="tagsRoot"></div></div>
+    </main>
+  </div>
+<script src="data.js"></script>
+<script>
+function renderTags(){
+  const root = document.getElementById('tagsRoot');
+  for(const cat in TAGS){
+    const section = document.createElement('section');
+    const h = document.createElement('h3'); h.textContent = cat;
+    const wrap = document.createElement('div'); wrap.className = 'tags';
+    TAGS[cat].forEach(t=>{
+      const btn = document.createElement('button');
+      btn.className='tag';
+      btn.textContent = t;
+      btn.onclick = ()=> location.href = 'index.html?tags=' + encodeURIComponent(t);
+      wrap.appendChild(btn);
+    });
+    section.appendChild(h); section.appendChild(wrap);
+    root.appendChild(section);
+  }
+}
+renderTags();
+</script>
+</body>
+</html>
