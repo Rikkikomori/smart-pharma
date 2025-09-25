@@ -1,3 +1,12 @@
+#!/bin/bash
+set -e
+PROJECT_DIR=~/Desktop/smart-pharma-v3.3
+cd "$PROJECT_DIR"
+
+echo "🎨 Обновляю дизайн страницы препаратов (v3.5)..."
+
+# --- drug.html ---
+cat > drug.html <<'HTML'
 <!doctype html>
 <html lang="ru">
 <head>
@@ -6,7 +15,7 @@
 <title>Препарат — Smart-Pharma</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="page-drug">
+<body>
   <header class="topbar">
     <div class="wrap">
       <div class="logo">Smart-Pharma</div>
@@ -104,3 +113,32 @@
 </script>
 </body>
 </html>
+HTML
+
+# --- style.css (добавляем новые стили) ---
+cat > style.css <<'CSS'
+:root{--bg:#f6f8fb;--card:#fff;--accent:#1766d1;--muted:#6b7280;--ok:#16a34a;--danger:#dc2626}
+body{font-family:Inter,Arial,sans-serif;background:var(--bg);margin:0;color:#0f172a}
+.topbar{background:#fff;border-bottom:1px solid #e5e7eb}
+.wrap{max-width:1400px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:700;color:var(--accent)}
+.drug-container{max-width:1100px;margin:20px auto;padding:0 20px;display:flex;flex-direction:column;gap:20px}
+.drug-card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+.drug-img-wide{width:100%;max-height:320px;object-fit:cover;border-radius:12px;margin-bottom:16px}
+.tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:6px 10px;border-radius:999px;background:#f3f4f6;border:none;font-size:13px}
+.badge{padding:4px 8px;border-radius:999px;font-size:12px;margin-left:6px}
+.badge.rx{background:var(--danger);color:#fff}
+.badge.otc{background:var(--ok);color:#fff}
+.pharmacy-info{background:#f0fdf4;border-left:4px solid var(--ok)}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.recipe-img{width:100%;margin-top:12px;border-radius:10px}
+.collection-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.result-card{background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+.result-card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+.title{font-weight:600;margin:8px 0}
+.sub{color:var(--muted);font-size:13px}
+@media(max-width:768px){.rec-grid{grid-template-columns:1fr}}
+CSS
+
+echo "✅ Страница препарата переработана (v3.5). Перезагрузи drug.html!"

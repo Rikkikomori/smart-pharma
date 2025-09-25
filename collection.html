@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Подборка — Smart-Pharma</title><link rel="stylesheet" href="style.css"></head>
+<body>
+  <header class="topbar"><div class="wrap"><div class="logo">Smart-Pharma</div><nav><a href="collections.html">← Назад</a></nav></div></header>
+  <main style="max-width:1200px;margin:20px auto;padding:0 20px">
+    <div id="colMain" class="card"></div>
+  </main>
+<script src="data.js"></script>
+<script>
+(function(){
+  function param(n){ return new URLSearchParams(location.search).get(n); }
+  const id=param('id');
+  const col=COLLECTIONS.find(c=>c.id===id);
+  const root=document.getElementById('colMain');
+  if(!col){ root.innerHTML='<p>Подборка не найдена</p>'; return; }
+  root.innerHTML=`<h2>${col.title}</h2><p>${col.description}</p><div id="items" class="collection-grid"></div>`;
+  const itemsDiv=document.getElementById('items');
+  col.items.forEach(pid=>{
+    const d=DATA.find(x=>x.id===pid);
+    if(d){
+      const card=document.createElement('div'); card.className='result-card';
+      card.innerHTML=`<img src="${d.img}"><div class="title"><a href="drug.html?id=${d.id}">${d.name}</a></div><div class="sub">${d.substance}</div>`;
+      itemsDiv.appendChild(card);
+    }
+  });
+})();
+</script>
+</body>
+</html>

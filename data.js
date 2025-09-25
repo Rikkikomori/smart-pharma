@@ -1,32 +1,259 @@
-/* Central TAGS bank and DATA for smart-pharma (demo) */
+/* TAGS, DATA, COLLECTIONS — демо-данные для v3.3 */
 const TAGS = {
-  "Симптомы": ["#боль","#больЖКТ","#больГорла","#головнаяБоль","#спазмы","#жар","#температура","#воспаление","#насморк","#чихание","#кашель","#заложенностьНоса","#одышка","#зуд","#жжение","#слабость","#усталость","#мигрень"],
-  "Заболевания": ["#ОРВИ","#простуда","#ангина","#фарингит","#ларингит","#ринит","#аллергия","#бронхит","#астма","#грипп","#дисменорея","#холецистит","#язва","#рефлюкс","#геморрой","#авитаминоз","#микозы"],
-  "Формы": ["#таблетки","#капсулы","#порошок","#сироп","#свечи","#капли","#спрей","#ампулы","#раствор","#инъекции","#гель","#мазь","#крем","#ингалятор","#дляРассасывания"],
+  "Симптомы": ["#жар","#температура","#боль","#больЖКТ","#больГорла","#насморк","#кашель","#зуд","#спазмы","#одышка","#головнаяБоль"],
+  "Заболевания": ["#ОРВИ","#простуда","#грипп","#ангина","#фарингит","#гастрит","#язва"],
+  "Формы": ["#таблетки","#капсулы","#порошок","#сироп","#свечи","#капли","#спрей","#ампулы","#мазь","#крем"],
   "Тип лечения": ["#СИМПТОМ","#патоген","#этиотроп","#витамины","#БАД"],
-  "Фармакогруппы": ["#анальгетики","#НПВС","#спазмолитики","#антибиотики","#антигистаминные","#муколитики","#противокашлевые","#гормоны","#пробиотики"],
+  "Фармакогруппы": ["#анальгетики","#НПВС","#антибиотики","#антигистаминные","#муколитики","#спазмолитики"],
   "Служебные": ["#OTC","#Rx","#дети","#взрослые"]
 };
 
 const DATA = [
-  {"id":0,"name":"Но-шпа","substance":"Дротаверин","form":"таблетки","symptoms":["боль в животе","спазмы","колики"],"disease":["дисменорея","холецистит"],"analogs":{"same_substance":["Спазмонет","Дротаверин-Тева"],"group_analogs":["Папаверин","Бускопан"],"other_forms":["ампулы"]},"prescription":false,"tags":["#больЖКТ","#спазмы","#таблетки","#СИМПТОМ","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=No-shpa"},
-  {"id":1,"name":"Парацетамол","substance":"Парацетамол","form":"таблетки","symptoms":["жар","головная боль","боль в теле"],"disease":["ОРВИ","простуда"],"analogs":{"same_substance":["Панадол","Эффералган"],"group_analogs":["Ибупрофен"],"other_forms":["сироп","свечи"]},"prescription":false,"tags":["#ОРВИ","#жар","#температура","#таблетки","#СИМПТОМ","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Paracetamol"},
-  {"id":2,"name":"Ибупрофен","substance":"Ибупрофен","form":"таблетки","symptoms":["воспаление","жар","боль"],"disease":["артрит","ОРВИ"],"analogs":{"same_substance":["Нурофен"],"group_analogs":["Парацетамол"],"other_forms":["сироп","гель"]},"prescription":false,"tags":["#жар","#воспаление","#таблетки","#НПВС","#СИМПТОМ","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Ibuprofen"},
-  {"id":3,"name":"Омепразол","substance":"Омепразол","form":"капсулы","symptoms":["изжога","боль в желудке"],"disease":["язва","рефлюкс"],"analogs":{"same_substance":["Омез","Омепразол-Акрихин"],"group_analogs":["Пантопразол","Рабепразол"],"other_forms":[]},"prescription":true,"tags":["#больЖКТ","#изжога","#капсулы","#патоген","#Rx"],"img":"https://via.placeholder.com/400x220.png?text=Omeprazole"},
-  {"id":4,"name":"Амоксициллин","substance":"Амоксициллин","form":"капсулы","symptoms":["инфекция","воспаление"],"disease":["ангина","бронхит"],"analogs":{"same_substance":["Амоксиклав"],"group_analogs":["Азитромицин"],"other_forms":["суспензия"]},"prescription":true,"tags":["#инфекция","#капсулы","#антибиотики","#патоген","#Rx"],"img":"https://via.placeholder.com/400x220.png?text=Amoxicillin"},
-  {"id":5,"name":"Азитромицин","substance":"Азитромицин","form":"таблетки","symptoms":["инфекция","кашель"],"disease":["ангина","бронхит"],"analogs":{"same_substance":["Сумамед"],"group_analogs":["Амоксициллин"],"other_forms":["суспензия"]},"prescription":true,"tags":["#инфекция","#кашель","#таблетки","#антибиотики","#Rx"],"img":"https://via.placeholder.com/400x220.png?text=Azithromycin"},
-  {"id":6,"name":"Цетиризин","substance":"Цетиризин","form":"таблетки","symptoms":["чихание","зуд","насморк"],"disease":["аллергия","ринит"],"analogs":{"same_substance":["Зиртек"],"group_analogs":["Лоратадин"],"other_forms":["капли"]},"prescription":false,"tags":["#аллергия","#зуд","#таблетки","#антигистаминные","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Cetirizine"},
-  {"id":7,"name":"Називин","substance":"Оксиметазолин","form":"капли","symptoms":["заложенность носа","насморк"],"disease":["ринит"],"analogs":{"same_substance":["Санорин"],"group_analogs":[],"other_forms":[]},"prescription":false,"tags":["#насморк","#капли","#СИМПТОМ","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Nazivin"},
-  {"id":8,"name":"Фарингосепт","substance":"Амброксол/бензокаин","form":"таблетки для рассасывания","symptoms":["боль в горле","кашель"],"disease":["фарингит","ларингит"],"analogs":{"same_substance":["Стрепсилс"],"group_analogs":[],"other_forms":[]},"prescription":false,"tags":["#больГорла","#таблетки","#СИМПТОМ","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Faringosept"},
-  {"id":9,"name":"Сальбутамол","substance":"Сальбутамол","form":"ингалятор","symptoms":["одышка","свистящее дыхание"],"disease":["бронхиальная астма"],"analogs":{"same_substance":["Вентолин"],"group_analogs":["Ипратропий"],"other_forms":[]},"prescription":true,"tags":["#астма","#ингалятор","#патоген","#Rx"],"img":"https://via.placeholder.com/400x220.png?text=Salbutamol"},
-  {"id":10,"name":"Аспирин","substance":"Ацетилсалициловая кислота","form":"таблетки","symptoms":["боль","воспаление"],"disease":["мигрень"],"analogs":{"same_substance":[],"group_analogs":["Ибупрофен"],"other_forms":[]},"prescription":false,"tags":["#боль","#таблетки","#анальгетики","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Aspirin"},
-  {"id":11,"name":"Витамин C","substance":"Аскорбиновая кислота","form":"таблетки","symptoms":["усталость","слабость"],"disease":["авитаминоз"],"analogs":{"same_substance":[],"group_analogs":[],"other_forms":["раствор"]},"prescription":false,"tags":["#витамины","#таблетки","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Vitamin+C"},
-  {"id":12,"name":"Миконазол","substance":"Микомазол","form":"крем","symptoms":["зуд","грибковые поражения"],"disease":["микозы"],"analogs":{"same_substance":["Микозон"],"group_analogs":[],"other_forms":[]},"prescription":false,"tags":["#микоз","#крем","#СИМПТОМ","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Myconazole"},
-  {"id":13,"name":"Кеторолак","substance":"Кеторолак","form":"таблетки/инъекции","symptoms":["сильная боль"],"disease":["болевые синдромы"],"analogs":{"same_substance":["Кетанов"],"group_analogs":[],"other_forms":["ампулы"]},"prescription":true,"tags":["#боль","#инъекции","#НПВС","#Rx"],"img":"https://via.placeholder.com/400x220.png?text=Ketorolac"},
-  {"id":14,"name":"Проктозан","substance":"Хлорид бензалкония/преднизолон/оксид цинка","form":"мазь","symptoms":["жжение","зуд"],"disease":["геморрой"],"analogs":{"same_substance":["Проктоседил"],"group_analogs":[],"other_forms":[]},"prescription":false,"tags":["#геморрой","#мазь","#СИМПТОМ","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Proctosan"},
-  {"id":15,"name":"Назонекс","substance":"Мометазон","form":"спрей","symptoms":["аллергия","насморк"],"disease":["ринит"],"analogs":{"same_substance":["Мометазон"],"group_analogs":["Флутиказон"],"other_forms":[]},"prescription":true,"tags":["#аллергия","#спрей","#патоген","#Rx"],"img":"https://via.placeholder.com/400x220.png?text=Nasonex"},
-  {"id":16,"name":"Глюкоза 5%","substance":"Глюкоза","form":"раствор для инфузий","symptoms":["обезвоживание"],"disease":["обезвоживание"],"analogs":{"same_substance":[],"group_analogs":[],"other_forms":[]},"prescription":false,"tags":["#обезвоживание","#раствор","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Glucose"},
-  {"id":17,"name":"Дротаверин (ампулы)","substance":"Дротаверин","form":"ампулы","symptoms":["спазмы"],"disease":["колики"],"analogs":{"same_substance":["Но-шпа"],"group_analogs":["Папаверин"],"other_forms":["таблетки"]},"prescription":false,"tags":["#спазмы","#ампулы","#СИМПТОМ","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=DrotaverineAmp"},
-  {"id":18,"name":"Лоратадин","substance":"Лоратадин","form":"таблетки","symptoms":["зуд","насморк"],"disease":["аллергия"],"analogs":{"same_substance":["Кларитин"],"group_analogs":["Цетиризин"],"other_forms":[]},"prescription":false,"tags":["#аллергия","#таблетки","#антигистаминные","#OTC"],"img":"https://via.placeholder.com/400x220.png?text=Loratadine"},
-  {"id":19,"name":"Пантопразол","substance":"Пантопразол","form":"таблетки","symptoms":["изжога","боль в желудке"],"disease":["рефлюкс"],"analogs":{"same_substance":["Пантопразол"],"group_analogs":["Омепразол"],"other_forms":[]},"prescription":true,"tags":["#больЖКТ","#капсулы","#патоген","#Rx"],"img":"https://via.placeholder.com/400x220.png?text=Pantoprazole"}
+  {
+    "id":20,
+    "name":"Терафлю (GlaxoSmithKline)",
+    "substance":"Парацетамол + Фенирамин + Фенилэфрин",
+    "company":"GlaxoSmithKline",
+    "form":"порошок для приготовления раствора",
+    "short":"Снимает симптомы простуды и гриппа: жар, заложенность носа, головную боль.",
+    "symptoms":["жар","головнаяБоль","насморк"],
+    "disease":["ОРВИ","простуда","грипп"],
+    "analogs":{"same_substance":[],"group_analogs":[21,22],"other_forms":[]},
+    "prescription":false,
+    "tags":["#ОРВИ","#температура","#порошок","#СИМПТОМ","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=Theraflu",
+    "recommend_pharmacy":["Максиколд Рино"],
+    "recommend_site":["Антигриппин"],
+    "pharmacyInfo":{
+      "store":"Аптека №12, Москва, ул. Ленина, 10",
+      "stock":42,
+      "price":"380 ₽",
+      "lastDelivery":"2025-09-15",
+      "location":"Отдел 3, полка B"
+    }
+  },
+  {
+    "id":21,
+    "name":"Coldrex",
+    "substance":"Парацетамол + фенилэфрин",
+    "company":"Reckitt",
+    "form":"порошок",
+    "short":"Симптоматическое средство при простуде; похож по действию на Терафлю.",
+    "symptoms":["жар","насморк"],
+    "disease":["ОРВИ"],
+    "analogs":{"same_substance":[],"group_analogs":[20],"other_forms":[]},
+    "prescription":false,
+    "tags":["#порошок","#ОРВИ","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=Coldrex",
+    "recommend_pharmacy":["Coldrex Рекоменд."],
+    "recommend_site":["Терафлю"],
+    "pharmacyInfo":{
+      "store":"Аптека №5, Москва, проспект Мира, 3",
+      "stock":18,
+      "price":"320 ₽",
+      "lastDelivery":"2025-09-18",
+      "location":"Отдел 2, полка A"
+    }
+  },
+  {
+    "id":22,
+    "name":"Ринзасип",
+    "substance":"Парацетамол + фенилэфрин",
+    "company":"LocalPharm",
+    "form":"порошок",
+    "short":"Лёгкое средство при простуде — снижает температуру и облегчает носовое дыхание.",
+    "symptoms":["температура","насморк"],
+    "disease":["простуда","ОРВИ"],
+    "analogs":{"same_substance":[],"group_analogs":[20,21],"other_forms":[]},
+    "prescription":false,
+    "tags":["#порошок","#температура","#ОРВИ","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=Rinzasip",
+    "recommend_pharmacy":["Ринзасип Рекоменд."],
+    "recommend_site":["Максиколд Рино"],
+    "pharmacyInfo":{
+      "store":"Аптека №8, СПб, Невский пр., 20",
+      "stock":5,
+      "price":"290 ₽",
+      "lastDelivery":"2025-09-20",
+      "location":"Отдел 1, полка C"
+    }
+  },
+  {
+    "id":2,
+    "name":"Парацетамол (AcmeFarm)",
+    "substance":"Парацетамол",
+    "company":"AcmeFarm",
+    "form":"таблетки",
+    "short":"Анальгетик и жаропонижающее, часто применяется при ОРВИ.",
+    "symptoms":["жар","головнаяБоль"],
+    "disease":["ОРВИ"],
+    "analogs":{"same_substance":[11,12],"group_analogs":[3],"other_forms":[12]},
+    "prescription":false,
+    "tags":["#таблетки","#жар","#СИМПТОМ","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=Paracetamol",
+    "recommend_pharmacy":["Панадол"],
+    "recommend_site":["Ибупрофен"],
+    "pharmacyInfo":{
+      "store":"Аптека №3, СПб, Невский пр., 50",
+      "stock":120,
+      "price":"50 ₽",
+      "lastDelivery":"2025-09-10",
+      "location":"Отдел 4, полка D"
+    }
+  },
+  {
+    "id":3,
+    "name":"Ибупрофен (HealthCorp)",
+    "substance":"Ибупрофен",
+    "company":"HealthCorp",
+    "form":"таблетки",
+    "short":"НПВС — уменьшает боль и воспаление; альтернатива парацетамолу в некоторых случаях.",
+    "symptoms":["боль","воспаление"],
+    "disease":["артрит","ОРВИ"],
+    "analogs":{"same_substance":[13],"group_analogs":[2],"other_forms":[]},
+    "prescription":false,
+    "tags":["#таблетки","#НПВС","#боль","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=Ibuprofen",
+    "recommend_pharmacy":["Нурофен"],
+    "recommend_site":["Парацетамол"],
+    "pharmacyInfo":{
+      "store":"Аптека №7, Казань, ул. Баумана, 12",
+      "stock":30,
+      "price":"120 ₽",
+      "lastDelivery":"2025-09-12",
+      "location":"Отдел 2, полка B"
+    }
+  },
+  {
+    "id":4,
+    "name":"Но-шпа (Dr.Reddys)",
+    "substance":"Дротаверин",
+    "company":"Dr.Reddys",
+    "form":"таблетки",
+    "short":"Спазмолитик, помогает при спазмах ЖКТ и болевом синдроме.",
+    "symptoms":["спазмы","больЖКТ"],
+    "disease":["колики","дисменорея"],
+    "analogs":{"same_substance":[17],"group_analogs":[],"other_forms":[17]},
+    "prescription":false,
+    "tags":["#таблетки","#спазмолитики","#спазмы","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=No-shpa",
+    "recommend_pharmacy":["Дротаверин"],
+    "recommend_site":["Папаверин"],
+    "pharmacyInfo":{
+      "store":"Аптека №2, Москва, ул. Тверская, 2",
+      "stock":9,
+      "price":"200 ₽",
+      "lastDelivery":"2025-09-19",
+      "location":"Отдел 3, полка A"
+    }
+  },
+  {
+    "id":11,
+    "name":"Панадол (GlaxoSmithKline)",
+    "substance":"Парацетамол",
+    "company":"GlaxoSmithKline",
+    "form":"таблетки",
+    "short":"Торговая марка парацетамола; анальгетик и жаропонижающее.",
+    "symptoms":["жар","боль"],
+    "disease":["ОРВИ"],
+    "analogs":{"same_substance":[2],"group_analogs":[3],"other_forms":[]},
+    "prescription":false,
+    "tags":["#таблетки","#жар","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=Panadol",
+    "recommend_pharmacy":["Панадол"],
+    "recommend_site":["Ибупрофен"],
+    "pharmacyInfo":{
+      "store":"Аптека №1, Москва, ул. Покровка, 18",
+      "stock":64,
+      "price":"140 ₽",
+      "lastDelivery":"2025-09-05",
+      "location":"Отдел 4, полка C"
+    }
+  },
+  {
+    "id":12,
+    "name":"Парацетамол (суспензия детская)",
+    "substance":"Парацетамол",
+    "company":"KidPharm",
+    "form":"суспензия",
+    "short":"Детская форма парацетамола — для снижения температуры у детей.",
+    "symptoms":["жар"],
+    "disease":["ОРВИ"],
+    "analogs":{"same_substance":[2,11],"group_analogs":[],"other_forms":[2]},
+    "prescription":false,
+    "tags":["#дети","#сироп","#жар","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=Paracetamol+Syrup",
+    "recommend_pharmacy":["Детский Парацетамол"],
+    "recommend_site":["Педиатрическая рекомендация"],
+    "pharmacyInfo":{
+      "store":"Аптека №9, СПб, ул. Рубинштейна, 10",
+      "stock":15,
+      "price":"160 ₽",
+      "lastDelivery":"2025-09-14",
+      "location":"Отдел Детский, полка B"
+    }
+  },
+  {
+    "id":13,
+    "name":"Нурофен (Reckitt)",
+    "substance":"Ибупрофен",
+    "company":"Reckitt",
+    "form":"таблетки",
+    "short":"Ибупрофен в торговой упаковке; анальгетик, противовоспалительный.",
+    "symptoms":["боль","жар"],
+    "disease":["ОРВИ"],
+    "analogs":{"same_substance":[3],"group_analogs":[2],"other_forms":[]},
+    "prescription":false,
+    "tags":["#НПВС","#таблетки","#боль","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=Nurofen",
+    "recommend_pharmacy":["Нурофен"],
+    "recommend_site":["Парацетамол"],
+    "pharmacyInfo":{
+      "store":"Аптека №4, Екатеринбург, ул. Ленина, 7",
+      "stock":0,
+      "price":"180 ₽",
+      "lastDelivery":"2025-08-30",
+      "location":"Склад (нет на витрине)"
+    }
+  },
+  {
+    "id":17,
+    "name":"Дротаверин (ампулы)",
+    "substance":"Дротаверин",
+    "company":"LocalPharm",
+    "form":"ампулы",
+    "short":"Инъекционная форма дротаверина для сильных спазмов.",
+    "symptoms":["спазмы"],
+    "disease":["колики"],
+    "analogs":{"same_substance":[4],"group_analogs":[],"other_forms":[4]},
+    "prescription":false,
+    "tags":["#ампулы","#спазмы","#OTC"],
+    "img":"https://via.placeholder.com/800x420.png?text=Drotaverine+Amp",
+    "recommend_pharmacy":["Дротаверин Ампулы"],
+    "recommend_site":["No-shpa"],
+    "pharmacyInfo":{
+      "store":"Аптека №6, Новосиб, ул. Ленина, 55",
+      "stock":7,
+      "price":"320 ₽",
+      "lastDelivery":"2025-09-16",
+      "location":"Отдел медикаменты, полка E"
+    }
+  }
+];
+
+const COLLECTIONS = [
+  {
+    "id":"c1",
+    "title":"Набор при простуде",
+    "description":"Парацетамол + средство от насморка + средство от кашля. Приоритет — рекламные товары.",
+    "items":[20,21,24],
+    "promo":true
+  },
+  {
+    "id":"c2",
+    "title":"Аптечка в дорогу",
+    "description":"Облегчение боли, жаропонижающие, антиспазмики.",
+    "items":[2,3,4],
+    "promo":false
+  }
 ];

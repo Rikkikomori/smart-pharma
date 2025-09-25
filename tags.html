@@ -1,33 +1,57 @@
 <!doctype html>
 <html lang="ru">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Справочник тегов</title><link rel="stylesheet" href="style.css"></head>
-<body>
-  <div class="topbar"><div class="wrap"><h1>Справочник тегов</h1><nav><a href="index.html">← Назад к поиску</a></nav></div></div>
-  <div class="container tags-page">
-    <main class="main">
-      <div class="card"><h2>Все теги по категориям</h2><div id="tagsRoot"></div></div>
-    </main>
-  </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Теги — Smart-Pharma</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-tags">
+  <header class="topbar">
+    <div class="wrap">
+      <div class="logo">Smart-Pharma</div>
+      <nav><a href="index.html">← Назад</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Справочник тегов</h2>
+    <div id="tagsRoot"></div>
+  </main>
+
 <script src="data.js"></script>
 <script>
-function renderTags(){
+(function(){
+  const COLORS = {
+    "Симптомы": "symptom",
+    "Заболевания": "disease",
+    "Формы": "form",
+    "Тип лечения": "treat",
+    "Фармакогруппы": "group",
+    "Служебные": "service"
+  };
+
   const root = document.getElementById('tagsRoot');
-  for(const cat in TAGS){
-    const section = document.createElement('section');
-    const h = document.createElement('h3'); h.textContent = cat;
-    const wrap = document.createElement('div'); wrap.className = 'tags';
-    TAGS[cat].forEach(t=>{
+  for (const cat in TAGS) {
+    const sec = document.createElement('div');
+    sec.className = 'tag-section card';
+    sec.innerHTML = '<h3>' + cat + '</h3>';
+
+    const wrap = document.createElement('div');
+    wrap.className = 'tags';
+
+    TAGS[cat].forEach(t => {
       const btn = document.createElement('button');
-      btn.className='tag';
+      btn.className = 'tag ' + (COLORS[cat] || '');
       btn.textContent = t;
-      btn.onclick = ()=> location.href = 'index.html?tags=' + encodeURIComponent(t);
+      btn.onclick = () => location.href = 'index.html?tags=' + encodeURIComponent(t);
       wrap.appendChild(btn);
     });
-    section.appendChild(h); section.appendChild(wrap);
-    root.appendChild(section);
+
+    sec.appendChild(wrap);
+    root.appendChild(sec);
   }
-}
-renderTags();
+})();
 </script>
 </body>
 </html>

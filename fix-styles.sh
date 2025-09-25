@@ -1,15 +1,13 @@
+#!/bin/bash
+set -e
 
+PROJECT_DIR=~/Desktop/smart-pharma-v3.3
+cd "$PROJECT_DIR" || { echo "Папка $PROJECT_DIR не найдена"; exit 1; }
 
+echo "🔧 Применяю фикс стилей: main <- v3.3, drug <- v3.5 (раздельно по классам)..."
 
-
-
-
-
-
-
-
-
-
+# ---------------- style.css ----------------
+cat > style.css <<'CSS'
 /* =========================
    Smart-Pharma unified styles
    - page-index  (главная)
@@ -54,27 +52,7 @@ a{color:var(--accent);text-decoration:underline}
 /* filters */
 .page-index .filters h3{margin:6px 0 8px 0;font-size:16px}
 .page-index .tags{display:flex;flex-wrap:wrap;gap:8px}
-.page-index /* Базовый стиль тегов */
-.tag {
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 13px;
-  cursor: pointer;
-  border: none;
-  transition: 0.2s;
-}
-
-/* Цветовые категории тегов */
-.tag.symptom { background: #fee2e2 !important; color: #b91c1c !important; }
-.tag.disease { background: #dbeafe !important; color: #1e40af !important; }
-.tag.form    { background: #dcfce7 !important; color: #166534 !important; }
-.tag.treat   { background: #ede9fe !important; color: #5b21b6 !important; }
-.tag.group   { background: #fef9c3 !important; color: #854d0e !important; }
-.tag.service { background: #f3f4f6 !important; color: #374151 !important; }
-
-.tag:hover { opacity: 0.8; transform: translateY(-2px); }
-
-
+.page-index .tag{padding:6px 10px;border-radius:999px;background:#f3f4f6;border:1px solid rgba(15,23,42,0.06);cursor:pointer;font-size:13px}
 .page-index .quick-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:8px; }
 .page-index .quick-grid button{padding:12px;border-radius:10px;background:#1766d1;color:#fff;border:none;cursor:pointer; text-align:center; font-weight:600;}
 
@@ -124,34 +102,30 @@ a{color:var(--accent);text-decoration:underline}
   .page-drug .rec-grid{grid-template-columns:1fr}
   .wrap{padding:10px}
 }
-/* Красивые "чипы"-теги */
-.tag {
-  display: inline-block;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 6px 14px;
-  margin: 4px 0;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 0.2s;
-}
+CSS
 
-.page-tags .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+echo "✅ style.css обновлён."
 
-.page-tags .tag-section {
-  margin-bottom: 20px;
-}
-/* Центровка тегов на странице тегов */
-.page-tags .tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* ← ключевой фикс */
-  gap: 10px;
-  margin-top: 10px;
-}
+# ---------------- add body classes to index.html and drug.html (robust) ----------------
+
+# Add page-index to index.html body tag (if already has class -> append, else add)
+perl -0777 -i -pe 'if(/<body[^>]*class="/){ s/(<body[^>]*class=")([^"]*)"/$1.$2." page-index\""/e } else { s/<body(.*?)>/<body class="page-index"$1>/s }' index.html
+
+# Add page-drug to drug.html body tag
+perl -0777 -i -pe 'if(/<body[^>]*class="/){ s/(<body[^>]*class=")([^"]*)"/$1.$2." page-drug\""/e } else { s/<body(.*?)>/<body class="page-drug"$1>/s }' drug.html
+
+echo "✅ body классы проставлены: index.html -> page-index, drug.html -> page-drug"
+
+# show files for quick check
+echo
+echo "Содержимое папки:"
+ls -la
+
+# try to open index
+if command -v open >/dev/null 2>&1; then
+  echo "Открываю index.html..."
+  open index.html || true
+fi
+
+echo
+echo "Готово — проверь главную и страницу препарата. Если где-то ещё есть визуальные проблемы, напиши конкретно (скриншот или опиши), я поправлю."

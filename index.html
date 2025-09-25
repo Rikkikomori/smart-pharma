@@ -3,44 +3,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Умный фарм-поиск — demo</title>
+<title>Smart-Pharma — умный фарм-поиск</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="topbar">
+<body class="page-index">
+  <header class="topbar">
     <div class="wrap">
-      <h1>Умный фарм-поиск</h1>
-      <nav><a href="tags.html">Справочник тегов</a></nav>
+      <div class="logo">Smart-Pharma</div>
+      <nav><a href="tags.html">Справочник тегов</a> · <a href="collections.html">Подборки</a></nav>
     </div>
-  </div>
+  </header>
+
   <div class="container">
     <aside class="left">
       <div class="card">
         <h3>Фильтры</h3>
         <div id="filters"></div>
-        <div class="f-actions">
-          <button id="applyFilters">Применить</button>
+        <div style="margin-top:12px; display:flex; gap:8px;">
           <button id="resetFilters" class="muted">Сбросить</button>
         </div>
-        <hr>
-        <label><input type="checkbox" id="rxOnly"> Только по рецепту</label>
       </div>
-      <div class="card small">
-        <h4>Подсказка</h4>
-        <p>Вводи <code>#</code> для поиска по тегам. Клик по тегу — быстрый фильтр.</p>
+
+      <div class="card">
+        <h4>Рекламный блок</h4>
+        <div id="adBlock" class="rec-card">
+          <strong>Рекламный баннер</strong><br>
+          <small>Настройте данные в data.js → recommend_site / recommend_pharmacy</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Быстрые подборки</h4>
+        <div id="quickCollections" class="quick-grid"></div>
       </div>
     </aside>
+
     <main class="main">
       <div class="search-card card">
-        <input id="query" placeholder="Введите название, симптом, тег или форму (напр. #ОРВИ, капсулы)">
+        <input id="query" placeholder="Введите название, действующее вещество, симптом или #тег">
         <div id="suggestions" class="suggestions"></div>
-        <div class="controls">
+        <div class="controls" style="margin-top:8px;">
           <button id="searchBtn">Поиск</button>
         </div>
       </div>
-      <div id="results" class="results grid"></div>
+
+      <section id="results" class="results grid card" style="padding:12px;"></section>
     </main>
   </div>
+
+  <div class="footer">Smart-Pharma demo — v3.3</div>
+
 <script src="data.js"></script>
 <script src="script.js"></script>
 </body>
